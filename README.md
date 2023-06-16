@@ -64,7 +64,7 @@ link) functions.
 
 ## Steps in MicrogliaMorphology
 
-##### 1. Determine dataset-specific parameters to use in Steps 3-4
+### 1. Determine dataset-specific parameters to use in Steps 3-4
 
 <details>
 <summary>
@@ -99,7 +99,7 @@ input required)
         choose**. ![](./images/ThresholdCheck_options.png)
         </details>
 
-        ##### *MicrogliaMorphology begins here*
+        #### *MicrogliaMorphology begins here*
 
         <details>
         <summary>
@@ -117,15 +117,15 @@ input required)
     particles that you would consider as 2 obviously overlapping cells.
     </details>
 
-    ##### 2. Specify final thresholding and cell area parameters for your dataset
+    ### 2. Specify final thresholding and cell area parameters for your dataset
 
-    ##### 3. Threshold images adapted from [standard protocol](https://www.jove.com/t/57648/quantifying-microglia-morphology-from-photomicrographs)
+    ### 3. Threshold images adapted from [standard protocol](https://www.jove.com/t/57648/quantifying-microglia-morphology-from-photomicrographs)
 
-    ##### 4. Generate single-cell images
+    ### 4. Generate single-cell images
 
-    ##### 5. Skeleton analysis
+    ### 5. Skeleton analysis
 
-    ##### 6. FracLac analysis (user input required)
+    ### 6. FracLac analysis (user input required)
 
     <details>
     <summary>

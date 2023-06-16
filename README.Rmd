@@ -38,7 +38,7 @@ computation, and analysis described have been automated within MicrogliaMorpholo
 
 ## Steps in MicrogliaMorphology
 
-##### 1. Determine dataset-specific parameters to use in Steps 3-4
+### 1. Determine dataset-specific parameters to use in Steps 3-4
   <details>
   <summary>Determine thresholding parameters using BioVoxxel Toolbox plugin (user input required)</summary>
   1. Run MicrogliaMorphology_BioVoxxel script: *Plugins > Macros > Run*
@@ -47,17 +47,17 @@ computation, and analysis described have been automated within MicrogliaMorpholo
       + Click/specify the following options in the pop-up box. A radius of 100 will typically work well for auto local thresholding microglia images, but you may need to run the ThresholdCheck a few times using different radius values to optimize the parameters to best capture fully connected, single microglia in your thresholded images. When 'Quantification (relative)' option is selected, the plugin will give you a recommended thresholding method at the end of the results file - this is a good starting point, but you should visually verify by looking through ALL of the threshold methods to determine which is best for your dataset: capturing as many branches as possible that are connected to cell bodies, while minimizing overlap between cells. You can read more about the ThresholdCheck feature on the [BioVoxxel website](https://imagej.net/plugins/biovoxxel-toolbox#threshold-check) and about [auto thresholding](https://imagej.net/plugins/auto-threshold) vs. [auto local thresholding](https://imagej.net/plugins/auto-local-threshold). **Make sure to note the final thresholding parameters you choose**. 
       ![](./images/ThresholdCheck_options.png)
   </details>
-##### *MicrogliaMorphology begins here*
+#### *MicrogliaMorphology begins here*
   <details> 
   <summary>Determine single-cell area range (user input required)</summary>
   In this step, you are determining the cutoff ranges (min and max) for what is considered a single microglia cell. Use the following guidelines when picking representative cells on both extremes:
   - **When selecting particles that are too small to be considered single cells:** select particles that you would consider *almost* as big as a single-cell, but not a single cell. **When selecting particles that are too big to be considered single cells:** select particles that you would consider as 2 obviously overlapping cells.
   </details>
-##### 2. Specify final thresholding and cell area parameters for your dataset
-##### 3. Threshold images adapted from [standard protocol](https://www.jove.com/t/57648/quantifying-microglia-morphology-from-photomicrographs)
-##### 4. Generate single-cell images
-##### 5. Skeleton analysis
-##### 6. FracLac analysis (user input required)
+### 2. Specify final thresholding and cell area parameters for your dataset
+### 3. Threshold images adapted from [standard protocol](https://www.jove.com/t/57648/quantifying-microglia-morphology-from-photomicrographs)
+### 4. Generate single-cell images
+### 5. Skeleton analysis
+### 6. FracLac analysis (user input required)
   <details>
   <summary>Some important notes</summary>
   1. Run FracLac plugin: *Plugins > Fractal Analysis > FracLac*
