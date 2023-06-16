@@ -12,7 +12,7 @@ MicrogliaMorphology is a user-friendly ImageJ macro that offers a
 semi-automated approach to characterize 27 morphology features from
 hundreds to thousands of individual microglia cells.
 
-##### If you are using this tool, please cite the following publications:
+#### If you are using this tool, please cite the following publications:
 
 -   Insert manuscript link
 -   [Quantifying Microglia Morphology from Photomicrographs of
@@ -40,7 +40,7 @@ hundreds to thousands of individual microglia cells.
 
 ### Create the following subdirectories in a single directory for your project, and include one representative test image:
 
--   insert image
+![](./images/Example_DatasetDirectory.png)
 
 ### Some notes about MicrogliaMorphology
 
@@ -99,7 +99,7 @@ input required)
         choose**. ![](./images/ThresholdCheck_options.png)
         </details>
 
-        ###### *MicrogliaMorphology begins here*
+        ##### *MicrogliaMorphology begins here*
 
         <details>
         <summary>

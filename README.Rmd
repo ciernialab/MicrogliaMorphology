@@ -10,7 +10,7 @@ output: github_document
 ## Welcome to MicrogliaMorphology!
 MicrogliaMorphology is a user-friendly ImageJ macro that offers a semi-automated approach to characterize 27 morphology features from hundreds to thousands of individual microglia cells.
 
-##### If you are using this tool, please cite the following publications:
+#### If you are using this tool, please cite the following publications:
 - Insert manuscript link
 - [Quantifying Microglia Morphology from Photomicrographs of Immunohistochemistry Prepared Tissue Using ImageJ](https://www.jove.com/t/57648/quantifying-microglia-morphology-from-photomicrographs)
 
@@ -28,7 +28,7 @@ MicrogliaMorphology is a user-friendly ImageJ macro that offers a semi-automated
 4. Download **MicrogliaMorphology_BioVoxxel.ijm** file from this repo into your directory of choice.
 
 ### Create the following subdirectories in a single directory for your project, and include one representative test image:
-- insert image
+![](./images/Example_DatasetDirectory.png)
 
 ### Some notes about MicrogliaMorphology
 **Semi-automated workflow**: MicrogliaMorphology wraps around the ImageJ plugins BioVoxxel Toolbox and FracLac, which are not compatible to call to using the ImageJ macro language. As such, there are a few manual steps in this protocol (Step 1, Step 6) which involve these 2 plugins. The only other user input involves following prompts to select input folders to call from and output folders to write to, with the option of batch-processing input files for each step if desired. Otherwise, all protocols,
@@ -47,7 +47,7 @@ computation, and analysis described have been automated within MicrogliaMorpholo
       + Click/specify the following options in the pop-up box. A radius of 100 will typically work well for auto local thresholding microglia images, but you may need to run the ThresholdCheck a few times using different radius values to optimize the parameters to best capture fully connected, single microglia in your thresholded images. When 'Quantification (relative)' option is selected, the plugin will give you a recommended thresholding method at the end of the results file - this is a good starting point, but you should visually verify by looking through ALL of the threshold methods to determine which is best for your dataset: capturing as many branches as possible that are connected to cell bodies, while minimizing overlap between cells. You can read more about the ThresholdCheck feature on the [BioVoxxel website](https://imagej.net/plugins/biovoxxel-toolbox#threshold-check) and about [auto thresholding](https://imagej.net/plugins/auto-threshold) vs. [auto local thresholding](https://imagej.net/plugins/auto-local-threshold). **Make sure to note the final thresholding parameters you choose**. 
       ![](./images/ThresholdCheck_options.png)
   </details>
-###### *MicrogliaMorphology begins here*
+##### *MicrogliaMorphology begins here*
   <details> 
   <summary>Determine single-cell area range (user input required)</summary>
   In this step, you are determining the cutoff ranges (min and max) for what is considered a single microglia cell. Use the following guidelines when picking representative cells on both extremes:
