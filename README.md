@@ -68,7 +68,16 @@ is very important for compatibility with
 [MicrogliaMorphologyR](https://github.com/ciernialab/MicrogliaMorphologyR)
 functions.
 
-## Steps in MicrogliaMorphology
+## Video Tutorial: How to use MicrogliaMorphology
+
+-   insert video
+
+Please watch this video before proceeding to the section below, which
+contains details for specific steps which are meant to help guide you to
+use the tool. Most of the detail is in the video, so it is important
+that you watch this prior to beginning to use MicrogliaMorphology!
+
+## Steps in MicrogliaMorphology and how to navigate them
 
 ### 1. Determine dataset-specific parameters to use in Steps 3-4
 
@@ -88,6 +97,18 @@ input required)
     -   Click/specify the following options in the pop-up box.
 
     ![](./images/ThresholdCheck_options.png)
+
+    -   ThresholdCheck is a nifty tool that helps you decide which of
+        the 16 auto thresholding and 9 auto local thresholding
+        parameters within ImageJ are best suited for your image set.
+        Auto thresholding takes into account the entire image space when
+        binarizing to distinguish background from signal, while auto
+        local thresholding only takes into account smaller parts of the
+        image at a time using a defined radius. You can follow these
+        links to read more about [auto
+        thresholding](https://imagej.net/plugins/auto-threshold)
+        vs. [auto local
+        thresholding](https://imagej.net/plugins/auto-local-threshold).
 
     -   A radius of 100 will typically work well for auto local
         thresholding microglia images, but you may need to run the
@@ -114,15 +135,6 @@ input required)
 
     ![](./images/ThresholdCheck_examples.png)
 
-    -   Auto thresholding takes into account the entire image space when
-        binarizing to distinguish background from signal, while auto
-        local thresholding only takes into account smaller parts of the
-        image at a time using a defined radius. You can follow these
-        links to read more about [auto
-        thresholding](https://imagej.net/plugins/auto-threshold)
-        vs. [auto local
-        thresholding](https://imagej.net/plugins/auto-local-threshold).
-
     -   **Make sure to note the final thresholding parameters you choose
         for your image set as you will need to input these choices into
         MicrogliaMorphology**.
@@ -131,21 +143,35 @@ input required)
 
 #### *MicrogliaMorphology begins here*
 
+![](./images/MicrogliaMorphology_Program.png)
+
 <details>
 <summary>
 Determine single-cell area range (user input required)
 </summary>
+
 In this step, you are determining the cutoff ranges (min and max) for
 what is considered a single microglia cell. Use the following guidelines
-when picking representative cells on both extremes: - **When selecting
-particles that are too small to be considered single cells:** select
-particles that you would consider *almost* as big as a single-cell, but
-not a single cell. **When selecting particles that are too big to be
-considered single cells:** select particles that you would consider as 2
-obviously overlapping cells.
-</details>
+when picking representative cells on both extremes:
 
-### 2. Specify final thresholding and cell area parameters for your dataset
+-   **When selecting particles that are too small to be considered
+    single cells:** select particles that you would consider *almost* as
+    big as a single-cell, but not a single cell.
+    -   **When selecting particles that are too big to be considered
+        single cells:** select particles that you would consider as 2
+        obviously overlapping cells.
+    -   Here are examples of particles that are too small or too big to
+        be considered single cells: ![](./images/CellAreaExamples.png)
+
+    </details>
+
+    ### 2. Specify final thresholding and cell area parameters for your dataset
+
+Steps 3-5 will use the final parameters that you specified within the
+macro such that the only user input required is to follow user prompts
+to specify folders to read from and write output to. You can consult the
+video of how to use MicrogliaMorphology at the start of this document
+for more information.
 
 ### 3. Threshold images adapted from [standard protocol](https://www.jove.com/t/57648/quantifying-microglia-morphology-from-photomicrographs)
 
@@ -169,7 +195,3 @@ Some important notes
 3.  Select **Batch** in Fraclac GUI and follow prompts. Load in files
     from the directory you wrote your single-cell images to in Step 4.
     </details>
-
-## Video Tutorial
-
--   insert video
