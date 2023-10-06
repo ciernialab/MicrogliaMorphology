@@ -22,30 +22,44 @@ MicrogliaMorphology is a user-friendly ImageJ macro that offers a semi-automated
 - [FracLac](https://imagej.nih.gov/ij/plugins/fraclac/FLHelp/Installation.htm)
 
 ### Install MicrogliaMorphology into ImageJ plugins folder and download MicrogliaMorphology_BioVoxxel script
-1. Save the **MicrogliaMorphology.ijm** file from this repo into the 'plugins' folder in your ImageJ directory.
+1. When you download and install FIJI, your app and related scripts/plugins will be saved into a folder called "Fiji.app". Create a new directory called "MicrogliaMorphology" under: Fiji.app > scripts > Plugins. 
+2. Save the **MicrogliaMorphology_Program.ijm** and **MicrogliaMorphology_BioVoxxel.ijm**files from this repo (can be found in macros-scripts folder) into the new MicrogliaMorphology directory.
 2. Restart ImageJ
-3. MicrogliaMorphology should now appear under Plugins (at bottom of drop-down) in your ImageJ toolbar, where it can be clicked on to begin user prompts.
-4. Download **MicrogliaMorphology_BioVoxxel.ijm** file from this repo into your directory of choice.
+3. MicrogliaMorphology should now appear under Plugins (at bottom of drop-down) in your ImageJ toolbar, under which you can find both macros that you just installed. Either can be clicked on to begin their respective user prompts.
 
-### Create the following subdirectories in a single directory for your project, and include one representative test image:
+### Create the following subdirectories in a single directory for your project where you would like to save your images and analysis output, and include one representative test image (e.g., 'Test-Iba1'):
 ![](./images/Example_DatasetDirectory.png)
 
 ### Some notes about MicrogliaMorphology
 **Semi-automated workflow**: MicrogliaMorphology wraps around the ImageJ plugins BioVoxxel Toolbox and FracLac, which are not compatible to call to using the ImageJ macro language. As such, there are a few manual steps in this protocol (Step 1, Step 6) which involve these 2 plugins. The only other user input involves following prompts to select input folders to call from and output folders to write to, with the option of batch-processing input files for each step if desired. Otherwise, all protocols,
 computation, and analysis described have been automated within MicrogliaMorphology.
 
-**Image preparation prior to MicrogliaMorphology**: When generating your single-channel input .tiff images which contain the microglia you want to analyze, include any important metadata tied to that image in its title, with each descriptor separated by an underscore. For example: "CohortName_AnimalID_Condition_Sex_BrainRegion.tiff" Formatting this way is very important for compatibility with MicrogliaMorphologyR(insert link) functions.
+**Image preparation prior to MicrogliaMorphology**: When generating your single-channel input .tiff images which contain the microglia you want to analyze, include any important metadata tied to that image in its title, with each descriptor separated by an underscore. For example: "CohortName_AnimalID_Condition_Sex_BrainRegion.tiff" Formatting this way is very important for compatibility with [MicrogliaMorphologyR](https://github.com/ciernialab/MicrogliaMorphologyR) functions.
 
 ## Steps in MicrogliaMorphology
 
 ### 1. Determine dataset-specific parameters to use in Steps 3-4
   <details>
   <summary>Determine thresholding parameters using BioVoxxel Toolbox plugin (user input required)</summary>
-  1. Run MicrogliaMorphology_BioVoxxel script: *Plugins > Macros > Run*
+  1. Run MicrogliaMorphology_BioVoxxel script in ImageJ: *Plugins > MicrogliaMorphology > MicrogliaMorphology_BioxVoxxel*
   2. Use **ThresholdCheck** feature within BioVoxxel Toolbox plugin to interactively determine the best thresholding parameters for your dataset.
   ![](./images/BioVoxxel_ThresholdCheck.png)
-      + Click/specify the following options in the pop-up box. A radius of 100 will typically work well for auto local thresholding microglia images, but you may need to run the ThresholdCheck a few times using different radius values to optimize the parameters to best capture fully connected, single microglia in your thresholded images. When 'Quantification (relative)' option is selected, the plugin will give you a recommended thresholding method at the end of the results file - this is a good starting point, but you should visually verify by looking through ALL of the threshold methods to determine which is best for your dataset: capturing as many branches as possible that are connected to cell bodies, while minimizing overlap between cells. You can read more about the ThresholdCheck feature on the [BioVoxxel website](https://imagej.net/plugins/biovoxxel-toolbox#threshold-check) and about [auto thresholding](https://imagej.net/plugins/auto-threshold) vs. [auto local thresholding](https://imagej.net/plugins/auto-local-threshold). **Make sure to note the final thresholding parameters you choose**. 
+      + Click/specify the following options in the pop-up box.
+      
       ![](./images/ThresholdCheck_options.png)
+      
+      + A radius of 100 will typically work well for auto local thresholding microglia images, but you may need to run the ThresholdCheck a few times using different radius values to optimize the parameters to best capture fully connected, single microglia in your thresholded images. When 'Quantification (relative)' option is selected, the plugin will give you a recommended thresholding method at the end of the results file - this is a good starting point, but you should visually verify by looking through ALL of the threshold methods to determine which is best for your dataset: capturing as many branches as possible that are connected to cell bodies, while minimizing overlap between cells. ThresholdCheck will give you a gallery of 25 different thresholding settings on the image you input - each image is color coded accordingly - from the [BioVoxxel website](https://imagej.net/plugins/biovoxxel-toolbox#threshold-check), where you can find more information in the ThresholdCheck feature:
+      
+      ![](./images/ThresholdCheck_colors.png)
+      
+      + Here are some examples of under, well, and over-thresholded microglia:
+      
+      ![](./images/ThresholdCheck_examples.png)
+      
+      + Auto thresholding takes into account the entire image space when binarizing to distinguish background from signal, while auto local thresholding only takes into account smaller parts of the image at a time using a defined radius. You can follow these links to read more about [auto thresholding](https://imagej.net/plugins/auto-threshold) vs. [auto local thresholding](https://imagej.net/plugins/auto-local-threshold). 
+      
+      + **Make sure to note the final thresholding parameters you choose for your image set as you will need to input these choices into MicrogliaMorphology**. 
+      
   </details>
 #### *MicrogliaMorphology begins here*
   <details> 
