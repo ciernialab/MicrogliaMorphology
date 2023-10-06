@@ -70,12 +70,11 @@ functions.
 
 ## Video Tutorial: How to use MicrogliaMorphology
 
--   insert video
-
 Please watch this video before proceeding to the section below, which
 contains details for specific steps which are meant to help guide you to
 use the tool. Most of the detail is in the video, so it is important
-that you watch this prior to beginning to use MicrogliaMorphology!
+that you watch this prior to beginning to use MicrogliaMorphology! -
+insert video
 
 ## Steps in MicrogliaMorphology and how to navigate them
 
@@ -145,6 +144,12 @@ input required)
 
 ![](./images/MicrogliaMorphology_Program.png)
 
+MicrogliaMorphology will first prompt you to specify the thresholding
+parameters that you decided on in Step 1 (which is why it is important
+to write them down!):
+
+![](./images/MicrogliaMorphology_SpecifyThresholding.png)
+
 <details>
 <summary>
 Determine single-cell area range (user input required)
@@ -163,23 +168,23 @@ when picking representative cells on both extremes:
     -   Here are examples of particles that are too small or too big to
         be considered single cells: ![](./images/CellAreaExamples.png)
 
-    </details>
+After you are done determining the lower and upper bounds for cell area,
+MicrogliaMorphology will provide a summary of the final thresholding and
+cell area parameters that will be applied in steps 2-4. You will see a
+window like this pop up before moving on to step 2:
 
-    ### 2. Specify final thresholding and cell area parameters for your dataset
+![](./images/Example_FinalAreaThresholdParameters.png)
+</details>
 
-Steps 3-5 will use the final parameters that you specified within the
-macro such that the only user input required is to follow user prompts
-to specify folders to read from and write output to. You can consult the
-video of how to use MicrogliaMorphology at the start of this document
-for more information.
+##### Steps 2-4 will use the final parameters that you specified within the macro such that the only user input required is to follow user prompts to specify folders to read from and write output to. You can consult the video of how to use MicrogliaMorphology at the start of this document for more information.
 
-### 3. Threshold images adapted from [standard protocol](https://www.jove.com/t/57648/quantifying-microglia-morphology-from-photomicrographs)
+### 2. Threshold images adapted from [standard protocol](https://www.jove.com/t/57648/quantifying-microglia-morphology-from-photomicrographs)
 
-### 4. Generate single-cell images
+### 3. Generate single-cell images
 
-### 5. Skeleton analysis
+### 4. Skeleton analysis
 
-### 6. FracLac analysis (user input required)
+### 5. FracLac analysis (user input required)
 
 <details>
 <summary>
