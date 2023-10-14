@@ -23,7 +23,7 @@ MicrogliaMorphology is a user-friendly ImageJ macro that offers a semi-automated
 
 ### Install MicrogliaMorphology into ImageJ plugins folder and download MicrogliaMorphology_BioVoxxel script
 1. When you download and install FIJI, your app and related scripts/plugins will be saved into a folder called "Fiji.app". Create a new directory called "MicrogliaMorphology" under: Fiji.app > scripts > Plugins. 
-2. Save the **MicrogliaMorphology_Program.ijm** and **MicrogliaMorphology_BioVoxxel.ijm**files from this repo (can be found in macros-scripts folder) into the new MicrogliaMorphology directory.
+2. Save the **MicrogliaMorphology_Program.ijm** and **MicrogliaMorphology_BioVoxxel.ijm** files from this repo (can be found in macros-scripts folder) into the new MicrogliaMorphology directory.
 2. Restart ImageJ
 3. MicrogliaMorphology should now appear under Plugins (at bottom of drop-down) in your ImageJ toolbar, under which you can find both macros that you just installed. Either can be clicked on to begin their respective user prompts.
 
@@ -31,10 +31,13 @@ MicrogliaMorphology is a user-friendly ImageJ macro that offers a semi-automated
 ![](./images/Example_DatasetDirectory.png)
 
 ### Some notes about MicrogliaMorphology
-**Semi-automated workflow**: MicrogliaMorphology wraps around the ImageJ plugins BioVoxxel Toolbox and FracLac, which are not compatible to call to using the ImageJ macro language. As such, there are a few manual steps in this protocol (Step 1, Step 6) which involve these 2 plugins. The only other user input involves following prompts to select input folders to call from and output folders to write to, with the option of batch-processing input files for each step if desired. Otherwise, all protocols,
-computation, and analysis described have been automated within MicrogliaMorphology.
+**Semi-automated workflow**: MicrogliaMorphology wraps around the ImageJ plugins BioVoxxel Toolbox and FracLac, which are not compatible to call to using the ImageJ macro language. As such, there are a few manual steps in this protocol (Step 1, Step 5) which involve these 2 plugins. The only other user input involves following prompts to select input folders to call from and output folders to write to, with the option of batch-processing input files for each step if desired. Otherwise, all protocols, computation, and analysis described have been automated within MicrogliaMorphology.
 
 **Image preparation prior to MicrogliaMorphology**: When generating your single-channel input .tiff images which contain the microglia you want to analyze, include any important metadata tied to that image in its title, with each descriptor separated by an underscore. For example: "CohortName_AnimalID_Condition_Sex_BrainRegion.tiff" Formatting this way is very important for compatibility with [MicrogliaMorphologyR](https://github.com/ciernialab/MicrogliaMorphologyR) functions.
+
+**Integration with FASTMAP ImageJ Plugin** (or any other method of tracing Regions of Interest prior to using MicrogliaMorphology): If you are interested in a specific region of interest (ROI) within your images, you can trace these in ImageJ prior to running MicrogliaMorphology to characterize the microglia within those ROIs. [FASTMAP](https://github.com/dterstege/FASTMAP) is one ImageJ tool that you can use to align your brain images to the [Allen Brain Institute reference mouse brain atlas](https://mouse.brain-map.org/static/atlas). You can also manually trace any ROIs on your images. Just make sure to save your .tif files so that they include the ROIs (example below), and click the check box next to any questions such as **"Do your input images have ROIs traced?"** that pop up in the MicrogliaMorphology prompts. This will ensure that only the part of the image that is contained within the ROI will be analyzed.
+
+![](./images/ExampleROI.png)
 
 ## Video Tutorial: How to use MicrogliaMorphology
 Please watch this video before proceeding to the section below, which contains details for specific steps which are meant to help guide you to use the tool. Most of the detail is in the video, so it is important that you watch this prior to beginning to use MicrogliaMorphology!
@@ -66,7 +69,7 @@ Please watch this video before proceeding to the section below, which contains d
   
   </details>
   
-#### *MicrogliaMorphology begins here*
+#### *MicrogliaMorphology ImageJ macro begins here*
 
   ![](./images/MicrogliaMorphology_Program.png)
 
@@ -95,6 +98,8 @@ After you are done determining the lower and upper bounds for cell area, Microgl
 ### 3. Generate single-cell images
 ### 4. Skeleton analysis
 
+#### *MicrogliaMorphology ImageJ macro ends here*
+
 ### 5. FracLac analysis (user input required)
   <details>
   <summary>Some important notes</summary>
@@ -103,3 +108,5 @@ After you are done determining the lower and upper bounds for cell area, Microgl
   ![](./images/FracLac_options.png)
   3. Select **Batch** in Fraclac GUI and follow prompts. Load in files from the directory you wrote your single-cell images to in Step 4. 
   </details>
+
+## ColorByCluster feature

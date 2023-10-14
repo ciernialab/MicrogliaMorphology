@@ -4,7 +4,7 @@ MicrogliaMorphology
 #### *An ImageJ macro for microglia morphology analysis*
 
 **Created**: 15 June, 2023 by Jenn Kim  
-**Last updated**: 06 October, 2023
+**Last updated**: 13 October, 2023
 
 ## Welcome to MicrogliaMorphology!
 
@@ -34,7 +34,7 @@ hundreds to thousands of individual microglia cells.
     Create a new directory called “MicrogliaMorphology” under:
     Fiji.app > scripts > Plugins.
 2.  Save the **MicrogliaMorphology_Program.ijm** and
-    **MicrogliaMorphology_BioVoxxel.ijm**files from this repo (can be
+    **MicrogliaMorphology_BioVoxxel.ijm** files from this repo (can be
     found in macros-scripts folder) into the new MicrogliaMorphology
     directory.
 3.  Restart ImageJ
@@ -52,7 +52,7 @@ hundreds to thousands of individual microglia cells.
 **Semi-automated workflow**: MicrogliaMorphology wraps around the ImageJ
 plugins BioVoxxel Toolbox and FracLac, which are not compatible to call
 to using the ImageJ macro language. As such, there are a few manual
-steps in this protocol (Step 1, Step 6) which involve these 2 plugins.
+steps in this protocol (Step 1, Step 5) which involve these 2 plugins.
 The only other user input involves following prompts to select input
 folders to call from and output folders to write to, with the option of
 batch-processing input files for each step if desired. Otherwise, all
@@ -67,6 +67,23 @@ title, with each descriptor separated by an underscore. For example:
 is very important for compatibility with
 [MicrogliaMorphologyR](https://github.com/ciernialab/MicrogliaMorphologyR)
 functions.
+
+**Integration with FASTMAP ImageJ Plugin** (or any other method of
+tracing Regions of Interest prior to using MicrogliaMorphology): If you
+are interested in a specific region of interest (ROI) within your
+images, you can trace these in ImageJ prior to running
+MicrogliaMorphology to characterize the microglia within those ROIs.
+[FASTMAP](https://github.com/dterstege/FASTMAP) is one ImageJ tool that
+you can use to align your brain images to the [Allen Brain Institute
+reference mouse brain atlas](https://mouse.brain-map.org/static/atlas).
+You can also manually trace any ROIs on your images. Just make sure to
+save your .tif files so that they include the ROIs (example below), and
+click the check box next to any questions such as **“Do your input
+images have ROIs traced?”** that pop up in the MicrogliaMorphology
+prompts. This will ensure that only the part of the image that is
+contained within the ROI will be analyzed.
+
+![](./images/ExampleROI.png)
 
 ## Video Tutorial: How to use MicrogliaMorphology
 
@@ -140,7 +157,7 @@ input required)
 
 </details>
 
-#### *MicrogliaMorphology begins here*
+#### *MicrogliaMorphology ImageJ macro begins here*
 
 ![](./images/MicrogliaMorphology_Program.png)
 
@@ -184,6 +201,8 @@ window like this pop up before moving on to step 2:
 
 ### 4. Skeleton analysis
 
+#### *MicrogliaMorphology ImageJ macro ends here*
+
 ### 5. FracLac analysis (user input required)
 
 <details>
@@ -200,3 +219,5 @@ Some important notes
 3.  Select **Batch** in Fraclac GUI and follow prompts. Load in files
     from the directory you wrote your single-cell images to in Step 4.
     </details>
+
+## ColorByCluster feature
