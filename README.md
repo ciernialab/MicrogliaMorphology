@@ -4,7 +4,7 @@ MicrogliaMorphology
 #### *An ImageJ macro for microglia morphology analysis*
 
 **Created**: 15 June, 2023 by Jenn Kim  
-**Last updated**: 13 October, 2023
+**Last updated**: 15 October, 2023
 
 ## Welcome to MicrogliaMorphology!
 
@@ -33,15 +33,19 @@ hundreds to thousands of individual microglia cells.
     scripts/plugins will be saved into a folder called “Fiji.app”.
     Create a new directory called “MicrogliaMorphology” under:
     Fiji.app > scripts > Plugins.
-2.  Save the **MicrogliaMorphology_Program.ijm** and
-    **MicrogliaMorphology_BioVoxxel.ijm** files from this repo (can be
-    found in macros-scripts folder) into the new MicrogliaMorphology
-    directory.
-3.  Restart ImageJ
-4.  MicrogliaMorphology should now appear under Plugins (at bottom of
-    drop-down) in your ImageJ toolbar, under which you can find both
-    macros that you just installed. Either can be clicked on to begin
-    their respective user prompts.
+2.  Save the following files from this repo (can be found in
+    macros-scripts folder) into the new MicrogliaMorphology directory:
+
+-   **MicrogliaMorphology_BioVoxxel.ijm**
+-   **MicrogliaMorphology_Program.ijm**
+-   **MicrogliaMorphology_ColorByCluster.ijm**
+
+2.  Restart ImageJ
+3.  MicrogliaMorphology should now appear under Plugins (at bottom of
+    drop-down) in your ImageJ toolbar, under which you can find all
+    three macros that you just installed. Any of them can be clicked on
+    to begin their respective user prompts. They should be used in the
+    order they are listed in above.
 
 ### Create the following subdirectories in a single directory for your project where you would like to save your images and analysis output, and include one representative test image (e.g., ‘Test-Iba1’):
 
@@ -221,3 +225,20 @@ Some important notes
     </details>
 
 ## ColorByCluster feature
+
+ColorByCluster allows you to color the microglia cells in the original
+immunofluorescent .tiff images by their cluster identifications. This
+macro is meant to be complimentary to the output generated using
+MicrogliaMorphologyR (see [ColorByCluster
+section](https://github.com/ciernialab/MicrogliaMorphologyR#colorbycluster)
+in the MicrogliaMorphologyR Github repo). The ColorByCluster feature
+allows you to visually validate morphological clusters and gain insight
+into their spatial distribution in the brain. This macro colors
+microglia in one image of interest at a time. To run this macro, you
+will need the following:
+
+-   Original immunofluorescent .tiff image that was input into
+    MicrogliaMorphology
+-   Thresholded .tiff image that was output by MicrogliaMorphology
+-   ColorByCluster labels .csv file generated using
+    [MicrogliaMorphologyR](https://github.com/ciernialab/MicrogliaMorphologyR#colorbycluster)
