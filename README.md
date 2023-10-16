@@ -4,7 +4,7 @@ MicrogliaMorphology
 #### *An ImageJ macro for microglia morphology analysis*
 
 **Created**: 15 June, 2023 by Jenn Kim  
-**Last updated**: 15 October, 2023
+**Last updated**: 16 October, 2023
 
 ## Welcome to MicrogliaMorphology!
 
@@ -94,8 +94,10 @@ contained within the ROI will be analyzed.
 Please watch this video before proceeding to the section below, which
 contains details for specific steps which are meant to help guide you to
 use the tool. Most of the detail is in the video, so it is important
-that you watch this prior to beginning to use MicrogliaMorphology! -
-insert video
+that you watch this prior to beginning to use MicrogliaMorphology!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YhLCdlFLzk8" data-external="1">
+</iframe>
 
 ## Steps in MicrogliaMorphology and how to navigate them
 
