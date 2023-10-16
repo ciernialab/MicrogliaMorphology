@@ -96,8 +96,7 @@ contains details for specific steps which are meant to help guide you to
 use the tool. Most of the detail is in the video, so it is important
 that you watch this prior to beginning to use MicrogliaMorphology!
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/YhLCdlFLzk8" data-external="1">
-</iframe>
+[![Video](./images/VideoScreenshot.png)](https://www.youtube.com/watch?v=YhLCdlFLzk8)
 
 ## Steps in MicrogliaMorphology and how to navigate them
 
