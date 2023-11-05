@@ -5,15 +5,16 @@ always_allow_html: true
 ---
 #### *An ImageJ macro for microglia morphology analysis*
 
-**Created**: 15 June, 2023 by Jenn Kim  
+**Created**: 15 June, 2023
 **Last updated**: `r format(Sys.time(), '%d %B, %Y')`
 
 ## Welcome to MicrogliaMorphology!
 MicrogliaMorphology is a user-friendly ImageJ macro that offers a semi-automated approach to characterize 27 morphology features from hundreds to thousands of individual microglia cells.
 
-#### If you are using this tool, please cite the following publications:
-- Insert manuscript link
-- [Quantifying Microglia Morphology from Photomicrographs of Immunohistochemistry Prepared Tissue Using ImageJ](https://www.jove.com/t/57648/quantifying-microglia-morphology-from-photomicrographs)
+#### If you are using this tool, please cite the following publication:
+- [Development of a high-throughput pipeline to characterize microglia morphological states at a single-cell resolution](https://www.biorxiv.org/content/10.1101/2023.11.03.565581v1)
+
+Kim, J., Pavlidis, P., Ciernia, A.V. (2023). Development of a high-throughput pipeline to characterize microglia morphological states at a single-cell resolution. bioRxiv doi: https://doi.org/10.1101/2023.11.03.565581.
 
 ## Before you begin
 
@@ -121,3 +122,5 @@ ColorByCluster allows you to color the microglia cells in the original immunoflu
 - Original immunofluorescent .tiff image that was input into MicrogliaMorphology
 - Thresholded .tiff image that was output by MicrogliaMorphology
 - ColorByCluster labels .csv file generated using [MicrogliaMorphologyR](https://github.com/ciernialab/MicrogliaMorphologyR#colorbycluster)
+
+After you finish running ColorByCluster on your image and saved your final outputs, make sure to **close all ImageJ windows** before proceeding to the next image!

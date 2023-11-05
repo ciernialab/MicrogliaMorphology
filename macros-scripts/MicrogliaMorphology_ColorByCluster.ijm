@@ -2,6 +2,8 @@
 // Jenn Kim
 // April 2023
  
+// function adapted from:
+// https://forum.image.sc/t/selecting-roi-based-on-name/3809 
 function findRoiWithName(roiName) { 
 	nR = roiManager("Count"); 
  
@@ -12,7 +14,6 @@ function findRoiWithName(roiName) {
 			return i; 
 		} 
 	} 
-	//return -1; 
 } 
 
 // MACRO STARTS HERE
@@ -44,7 +45,6 @@ function findRoiWithName(roiName) {
 		
 		open(ColorByCluster_clusters);
 		print(ColorByCluster_clusters);
-		selectWindow("ColorByCluster.csv");
 		
 		x = File.openAsString(ColorByCluster_clusters);
 		rows = split(x,"\n");	
@@ -53,6 +53,7 @@ function findRoiWithName(roiName) {
 		roiManager("Set Color", "black");
 
 // customize colors for up to 10 cluster labels
+
 		//dialog box
 		Dialog.create("MicrogliaMorphology");
 		Dialog.addMessage("In the sections below, specify what colors you want your morphological clusters to be in the image.");
@@ -87,101 +88,71 @@ for(n=0; n<rows.length-1; n++) {
 	cluster = Table.getString("Cluster",n);
 
 		if(cluster==1){
-			selectWindow("ColorByCluster.csv");
 			label2 = Table.getString("ID",n);
-			//print(label2);
 			roi_idx = findRoiWithName(label2);
-			//print(roi_idx);
 			roiManager("Select", roi_idx);
 			Roi.setFillColor(Cluster1);
 	}
 	
 		if(cluster==2){
-			selectWindow("ColorByCluster.csv");
 			label2 = Table.getString("ID",n);
-			//print(label2);
 			roi_idx = findRoiWithName(label2);
-			//print(roi_idx);
 			roiManager("Select", roi_idx);
 			Roi.setFillColor(Cluster2);
 	}
 	
 		if(cluster==3){
-			selectWindow("ColorByCluster.csv");
 			label2 = Table.getString("ID",n);
-			//print(label2);
 			roi_idx = findRoiWithName(label2);
-			//print(roi_idx);
 			roiManager("Select", roi_idx);
 			Roi.setFillColor(Cluster3);
 	}
 	
 		if(cluster==4){
-			selectWindow("ColorByCluster.csv");
 			label2 = Table.getString("ID",n);
-			//print(label2);
 			roi_idx = findRoiWithName(label2);
-			//print(roi_idx);
 			roiManager("Select", roi_idx);
 			Roi.setFillColor(Cluster4);
 	}
 	
 		if(cluster==5){
-			selectWindow("ColorByCluster.csv");
 			label2 = Table.getString("ID",n);
-			print(label2);
 			roi_idx = findRoiWithName(label2);
-			print(roi_idx);
 			roiManager("Select", roi_idx);
 			Roi.setFillColor(Cluster5);
 	}
 	
 		if(cluster==6){
-			selectWindow("ColorByCluster.csv");
 			label2 = Table.getString("ID",n);
-			//print(label2);
 			roi_idx = findRoiWithName(label2);
-			//print(roi_idx);
 			roiManager("Select", roi_idx);
 			Roi.setFillColor(Cluster6);
 	}
 	
 		if(cluster==7){
-			selectWindow("ColorByCluster.csv");
 			label2 = Table.getString("ID",n);
-			//print(label2);
 			roi_idx = findRoiWithName(label2);
-			//print(roi_idx);
 			roiManager("Select", roi_idx);
 			Roi.setFillColor(Cluster7);
 	}
 	
 		if(cluster==8){
-			selectWindow("ColorByCluster.csv");
 			label2 = Table.getString("ID",n);
-			//print(label2);
 			roi_idx = findRoiWithName(label2);
-			//print(roi_idx);
 			roiManager("Select", roi_idx);
 			Roi.setFillColor(Cluster8);
 	}
 	
 		if(cluster==9){
-			selectWindow("ColorByCluster.csv");
 			label2 = Table.getString("ID",n);
-			//print(label2);
 			roi_idx = findRoiWithName(label2);
-			//print(roi_idx);
 			roiManager("Select", roi_idx);
 			Roi.setFillColor(Cluster9);
 	}
 	
 		if(cluster==10){
-			selectWindow("ColorByCluster.csv");
 			label2 = Table.getString("ID",n);
-			print(label2);
 			roi_idx = findRoiWithName(label2);
-			print(roi_idx);
 			roiManager("Select", roi_idx);
 			Roi.setFillColor(Cluster10);
 	}
