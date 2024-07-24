@@ -1,7 +1,6 @@
 //// Microglia Morphology ImageJ macro
 //// Created by Jenn Kim on September 18, 2022
-//// Updated September 20, 2022
-//// April 3, 2023
+//// Updated July 24, 2024
 
 // FUNCTIONS
 
@@ -10,6 +9,10 @@ function thresholding(input, output, filename) {
 		print(input + filename);
 		open(input + filename);
 	
+		// MEASURE AREA
+		run("Set Measurements...", "area display redirect=None decimal=9");
+		run("Measure");
+		
 		// THRESHOLD IMAGE AND CLEAN UP FOR DOWNSTREAM PROCESSING IN ANALYZESKELETON
 		run("8-bit");
 		// convert to grayscale to best visualize all positive staining
@@ -48,6 +51,10 @@ function thresholding(input, output, filename) {
 function thresholding2(input, output, filename) {
 		print(input + filename);
 		open(input + filename);
+		
+		// MEASURE AREA
+		run("Set Measurements...", "area display redirect=None decimal=9");
+		run("Measure");
 	
 		// THRESHOLD IMAGE AND CLEAN UP FOR DOWNSTREAM PROCESSING IN ANALYZESKELETON
 		run("8-bit");
@@ -288,6 +295,23 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 	    run("Close");
 	    selectWindow("B&C");
 	    run("Close");
+	    
+	    // conditional printing for saving final parameters
+		if(auto_or_autolocal == "Auto thresholding"){
+			finalprint = auto_method;
+		}
+		if(auto_or_autolocal == "Auto local thresholding"){
+			finalprint = autolocal_method + ", radius = " + autolocal_radius;
+		}
+
+	    // save final image set parameters to .txt file
+	    output2=File.getParent(path);
+	    f = File.open(output2 + "/FinalDatasetParameters.txt");
+	    print(f, auto_or_autolocal + " \n" + 
+	    		 "Thresholding method = " + finalprint + " \n" +
+	    		 "Lower cell area filter = " + area_min + " \n" + 
+	    		 "Upper cell area filter = " + area_max);
+	    File.close(f);
 				
 // Progress message: print summary statement of parameters
 		Dialog.create("MicrogliaMorphology");
@@ -322,10 +346,13 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 		subregion_input=getFileList(subregion_dir);
 		autocount=subregion_input.length;
 			
-		//use file browser to choose path and files to run plugin on
+		//use file browser to choose path and files to save output to
 		setOption("JFileChooser",true);
 		output=getDirectory("Choose output folder to write to");
-				
+		
+		//area measurements saved to parent folder
+		output2=File.getParent(output);
+
 		//dialog box
 		Dialog.create("MicrogliaMorphology");
 		Dialog.addMessage("Processing files from directory:");
@@ -356,6 +383,11 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 				thresholding2(subregion_dir, output, subregion_input[i]);
 				}
 		}
+		
+		// SAVE AREA MEASURES
+		saveAs("Results", output2 + "/Areas.csv");
+		selectWindow("Results");
+	   	run("Close");
 		
 		print("Thresholding finished");
 
