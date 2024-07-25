@@ -53,7 +53,8 @@ function listFiles(dir, numFiles, fileList, searchString) {
 		Dialog.show();
 
 		Dialog.create("MicrogliaMorphology");
-		Dialog.addMessage("If you want to batch process your images for ColorByCluster, please make sure that your original input images, thresholded images, and ColorByCluster csv files all have the same starting string (see Github page for examples).");
+		Dialog.addMessage("If you want to batch process your images for ColorByCluster, please make sure that your original input images, thresholded images,"); 
+		Dialog.addMessage("and ColorByCluster csv files all have the same starting string (see Github page for examples).");
 		Dialog.addCheckbox("Do you want to use batch mode for a set of images?", true);
 		Dialog.show();
 		
