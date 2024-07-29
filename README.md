@@ -3,7 +3,7 @@ MicrogliaMorphology
 
 #### *An ImageJ macro for microglia morphology analysis*
 
-**Created**: 15 June, 2023 **Last updated**: 05 November, 2023
+**Created**: 15 June, 2023 **Last updated**: 29 July, 2024
 
 ## Welcome to MicrogliaMorphology!
 
@@ -15,12 +15,12 @@ hundreds to thousands of individual microglia cells.
 
 -   [Development of a high-throughput pipeline to characterize microglia
     morphological states at a single-cell
-    resolution](https://www.biorxiv.org/content/10.1101/2023.11.03.565581v1)
+    resolution](https://www.eneuro.org/content/early/2024/07/18/ENEURO.0014-24.2024)
 
-Kim, J., Pavlidis, P., Ciernia, A.V. (2023). Development of a
-high-throughput pipeline to characterize microglia morphological states
-at a single-cell resolution. bioRxiv doi:
-<https://doi.org/10.1101/2023.11.03.565581>.
+Kim J, Pavlidis P, Ciernia AV. Development of a high-throughput pipeline
+to characterize microglia morphological states at a single-cell
+resolution. eNeuro. 2024 Jul 19:ENEURO.0014-24.2024. doi:
+10.1523/ENEURO.0014-24.2024. Epub ahead of print. PMID: 39029952.
 
 ## Before you begin
 
@@ -30,7 +30,7 @@ at a single-cell resolution. bioRxiv doi:
 -   [BioVoxxel Toolbox](https://imagej.net/plugins/biovoxxel-toolbox)
 -   [FracLac](https://imagej.nih.gov/ij/plugins/fraclac/FLHelp/Installation.htm)
 
-### Install MicrogliaMorphology into ImageJ plugins folder and download MicrogliaMorphology_BioVoxxel script
+### Install MicrogliaMorphology scripts into ImageJ plugins folder
 
 1.  When you download and install FIJI, your app and related
     scripts/plugins will be saved into a folder called “Fiji.app”.
@@ -43,12 +43,26 @@ at a single-cell resolution. bioRxiv doi:
 -   **MicrogliaMorphology_Program.ijm**
 -   **MicrogliaMorphology_ColorByCluster.ijm**
 
-2.  Restart ImageJ
-3.  MicrogliaMorphology should now appear under Plugins (at bottom of
+3.  Optional: if you would like a version of the program where you can
+    start at any step in the pipeline, create an additional subdirectory
+    called “MicrogliaMorphology_Steps” under: Fiji.app > scripts >
+    Plugins > MicrogliaMorphology and save the following files from this
+    repo (can be found in macros-scripts/MicrogliaMorphology_Steps
+    folder) into the new subdirectory:
+
+-   **MM_Step1_DatasetParameters.ijm**
+-   **MM_Step2_Thresholding.ijm**
+-   **MM_Step3_GenerateSingleCells.ijm**
+-   **MM_Step4_SkeletonAnalysis.ijm**
+
+4.  Restart ImageJ
+5.  MicrogliaMorphology should now appear under Plugins (at bottom of
     drop-down) in your ImageJ toolbar, under which you can find all
-    three macros that you just installed. Any of them can be clicked on
-    to begin their respective user prompts. They should be used in the
-    order they are listed in above.
+    three macros that you just installed, as well as a subdirectory
+    containing the individual steps of the pipeline so that you can
+    start from any point. Any of them can be clicked on to begin their
+    respective user prompts. They should be used in the order they are
+    listed in above.
 
 ### Create the following subdirectories in a single directory for your project where you would like to save your images and analysis output, and include one representative test image (e.g., ‘Test-Iba1’):
 
@@ -196,7 +210,10 @@ when picking representative cells on both extremes:
 After you are done determining the lower and upper bounds for cell area,
 MicrogliaMorphology will provide a summary of the final thresholding and
 cell area parameters that will be applied in steps 2-4. You will see a
-window like this pop up before moving on to step 2:
+window like the one below pop up before moving on to step 2.
+Additionally, in your home directory, you will find a file called
+FinalDatasetParameters.txt which notes all of this information for your
+records.
 
 ![](./images/Example_FinalAreaThresholdParameters.png)
 </details>
@@ -204,6 +221,13 @@ window like this pop up before moving on to step 2:
 #### Steps 2-4 will use the final parameters that you specified within the macro such that the only user input required is to follow user prompts to specify folders to read from and write output to. You can consult the video of how to use MicrogliaMorphology at the start of this document for more information.
 
 ### 2. Threshold images adapted from [standard protocol](https://www.jove.com/t/57648/quantifying-microglia-morphology-from-photomicrographs)
+
+-   In this step, a file called “Areas.csv” will be generated and saved
+    to your home directory. This contains the areas of each image
+    (either the full image or the roi within the image, depending on
+    what you specified), which you can use as input downstream in
+    MicrogliaMorphologyR to obtain density measures (microglia cell #s /
+    area analyzed).
 
 ### 3. Generate single-cell images
 
@@ -238,15 +262,17 @@ section](https://github.com/ciernialab/MicrogliaMorphologyR#colorbycluster)
 in the MicrogliaMorphologyR Github repo). The ColorByCluster feature
 allows you to visually validate morphological clusters and gain insight
 into their spatial distribution in the brain. This macro colors
-microglia in one image of interest at a time. To run this macro, you
-will need the following:
+microglia in one image of interest at a time, or batch processes a group
+of images. To run this macro, you will need the following:
 
--   Original immunofluorescent .tiff image that was input into
+-   Original immunofluorescent .tiff image(s) that was input into
     MicrogliaMorphology
--   Thresholded .tiff image that was output by MicrogliaMorphology
--   ColorByCluster labels .csv file generated using
+-   Thresholded .tiff image(s) that was output by MicrogliaMorphology
+-   ColorByCluster labels .csv file(s) generated using
     [MicrogliaMorphologyR](https://github.com/ciernialab/MicrogliaMorphologyR#colorbycluster)
+-   For batch processing: new folder to write final ColorBycluster
+    images to
 
-After you finish running ColorByCluster on your image and saved your
-final outputs, make sure to **close all ImageJ windows** before
-proceeding to the next image!
+If you are running individual images: After you finish running
+ColorByCluster on your image and saved your final outputs, make sure to
+**close all ImageJ windows** before proceeding to the next image!
