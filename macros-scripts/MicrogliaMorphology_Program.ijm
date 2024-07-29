@@ -342,13 +342,13 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 
 //use file browser to choose path and files to run plugin on
 		setOption("JFileChooser",true);
-		subregion_dir=getDirectory("Choose parent folder containing subregion ROIs");
+		subregion_dir=getDirectory("Choose parent folder containing original input images");
 		subregion_input=getFileList(subregion_dir);
 		autocount=subregion_input.length;
 			
 		//use file browser to choose path and files to save output to
 		setOption("JFileChooser",true);
-		output=getDirectory("Choose output folder to write to");
+		output=getDirectory("Choose output folder to write thresholded images to");
 		
 		//area measurements saved to parent folder
 		output2=File.getParent(output);
@@ -401,13 +401,13 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 
   		//use file browser to choose path and files to run plugin on
 		setOption("JFileChooser",true);
-		thresholded_dir=getDirectory("Choose parent folder containing thresholded ROIs");
+		thresholded_dir=getDirectory("Choose parent folder containing thresholded images");
 		thresholded_input=getFileList(thresholded_dir);
 		count=thresholded_input.length;
 	
 		//use file browser to choose path and files to run plugin on
 		setOption("JFileChooser",true);
-		cellROI_output=getDirectory("Choose output folder to write to");
+		cellROI_output=getDirectory("Choose output folder to write single cell images to");
 		
 		//dialog box
 		Dialog.create("MicrogliaMorphology");
@@ -442,13 +442,13 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
         
         //use file browser to choose path and files to run plugin on
 		setOption("JFileChooser",true);
-		cell_dir=getDirectory("Choose parent folder containing single-cell ROIs");
+		cell_dir=getDirectory("Choose parent folder containing single-cell images");
 		cell_input=getFileList(cell_dir);
 		cell_count=cell_input.length;
 	
 		//use file browser to choose path and files to run plugin on
 		setOption("JFileChooser",true);
-		skeleton_output=getDirectory("Choose output folder to write results to");
+		skeleton_output=getDirectory("Choose output folder to write skeleton results to");
 		
 		//use file browser to choose path and files to run plugin on
 		setOption("JFileChooser",true);
