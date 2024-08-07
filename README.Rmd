@@ -12,9 +12,9 @@ always_allow_html: true
 MicrogliaMorphology is a user-friendly ImageJ macro that offers a semi-automated approach to characterize 27 morphology features from hundreds to thousands of individual microglia cells.
 
 #### If you are using this tool, please cite the following publication:
-- [Development of a high-throughput pipeline to characterize microglia morphological states at a single-cell resolution](https://www.eneuro.org/content/early/2024/07/18/ENEURO.0014-24.2024)
+- [Development of a high-throughput pipeline to characterize microglia morphological states at a single-cell resolution](https://www.eneuro.org/content/11/7/ENEURO.0014-24.2024)
 
-Kim J, Pavlidis P, Ciernia AV. Development of a high-throughput pipeline to characterize microglia morphological states at a single-cell resolution. eNeuro. 2024 Jul 19:ENEURO.0014-24.2024. doi: 10.1523/ENEURO.0014-24.2024. Epub ahead of print. PMID: 39029952.
+> Kim J, Pavlidis P, Ciernia AV. Development of a High-Throughput Pipeline to Characterize Microglia Morphological States at a Single-Cell Resolution. eNeuro. 2024 Jul 30;11(7):ENEURO.0014-24.2024. doi: 10.1523/ENEURO.0014-24.2024. PMID: 39029952; PMCID: PMC11289588.
 
 ## Before you begin
 
