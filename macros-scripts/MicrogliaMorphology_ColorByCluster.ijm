@@ -371,5 +371,5 @@ for(n=0; n<rows.length-1; n++) {
 
 run("Flatten");
 print("done!");
-)
+
 }
