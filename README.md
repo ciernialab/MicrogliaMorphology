@@ -3,7 +3,7 @@ MicrogliaMorphology
 
 #### *An ImageJ macro for microglia morphology analysis*
 
-**Created**: 15 June, 2023 **Last updated**: 06 August, 2024
+**Created**: 15 June, 2023 **Last updated**: 10 August, 2025
 
 ## Welcome to MicrogliaMorphology!
 
@@ -120,7 +120,9 @@ that you watch this prior to beginning to use MicrogliaMorphology!
 ### 1. Determine dataset-specific parameters to use in Steps 3-4
 
 <details>
+
 <summary>
+
 Determine thresholding parameters using BioVoxxel Toolbox plugin (user
 input required)
 </summary>
@@ -189,7 +191,9 @@ to write them down!):
 ![](./images/MicrogliaMorphology_SpecifyThresholding.png)
 
 <details>
+
 <summary>
+
 Determine single-cell area range (user input required)
 </summary>
 
@@ -237,7 +241,9 @@ records.
 ### 5. FracLac analysis (user input required)
 
 <details>
+
 <summary>
+
 Some important notes
 </summary>
 
