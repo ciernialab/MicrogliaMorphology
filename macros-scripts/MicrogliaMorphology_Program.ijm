@@ -381,6 +381,7 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 		if(auto_or_autolocal == "Auto thresholding"){
 			
 			for (i=(startAt-1); i<(endAt); i++){
+			
 				if (use_batchmode) {
 					print("Thresholding in progress, image " + (i + 1) + " out of " + endAt); //have some kind of update while in batchmode
 				} 
@@ -420,6 +421,7 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 
   		//use file browser to choose path and files to run plugin on
 		setOption("JFileChooser",true);
+		File.setDefaultDir(output); //per default set it to the directory that was just output 
 		thresholded_dir=getDirectory("Choose parent folder containing thresholded images");
 		thresholded_input=getFileList(thresholded_dir);
 		count=thresholded_input.length;
@@ -436,8 +438,8 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 		Dialog.addMessage("which has this many images:");
 		Dialog.addMessage(count);
 		Dialog.addMessage("Select range of images you'd like to analyze");
-		Dialog.addNumber("Start at Image:", 1);
-		Dialog.addNumber("Stop at Image:", 1);
+		Dialog.addNumber("Start at Image:", startAt);
+		Dialog.addNumber("Stop at Image:", endAt);
 		Dialog.show();
 		
 		startAt=Dialog.getNumber();
@@ -472,6 +474,7 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
         
         //use file browser to choose path and files to run plugin on
 		setOption("JFileChooser",true);
+		File.setDefaultDir(cellROI_output);
 		cell_dir=getDirectory("Choose parent folder containing single-cell images");
 		cell_input=getFileList(cell_dir);
 		cell_count=cell_input.length;
@@ -492,8 +495,8 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 		Dialog.addMessage("which has this many images:");
 		Dialog.addMessage(cell_count);
 		Dialog.addMessage("Select range of cell images you'd like to analyze");
-		Dialog.addNumber("Start at Image:", 1);
-		Dialog.addNumber("Stop at Image:", 1);
+		Dialog.addNumber("Start at Image:", startAt);
+		Dialog.addNumber("Stop at Image:", endAt);
 		Dialog.show();
 		
 		startAt=Dialog.getNumber();
