@@ -186,6 +186,7 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 		Dialog.addChoice("Which method is best for your dataset?", thresholding_parameters2);
 		Dialog.addNumber("Radius:", 100);
 		Dialog.addCheckbox("Does your test image have ROIs traced?", true);
+		Dialog.addCheckbox("Do you want to use batchmode", false);
 		Dialog.addMessage("Next, let's determine the area range of a single microglial cell using a test image.");
 		Dialog.show();	
 		
@@ -194,6 +195,7 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 		autolocal_method= Dialog.getChoice();
 		autolocal_radius = Dialog.getNumber();
 		roichoicetest=Dialog.getCheckbox();
+		use_batchmode = Dialog.getCheckbox();
 
 
 // STEP 1b. Determining single cell area range using test image
@@ -370,18 +372,36 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 		endAt=Dialog.getNumber();
 		roichoice=Dialog.getCheckbox();
 		
-		if(auto_or_autolocal == "Auto thresholding"){
+		if (use_batchmode) {
+			setBatchMode(true);
+		} else {
 			setBatchMode("show");
+		}
+			
+		if(auto_or_autolocal == "Auto thresholding"){
+			
 			for (i=(startAt-1); i<(endAt); i++){
+			
+				if (use_batchmode) {
+					print("Thresholding in progress, image " + (i + 1) + " out of " + endAt); //have some kind of update while in batchmode
+				} 
 				thresholding(subregion_dir, output, subregion_input[i]);
 				}
 		}
 		
 		if(auto_or_autolocal == "Auto local thresholding"){
-			setBatchMode("show");
+		
 			for (i=(startAt-1); i<(endAt); i++){
+			
+				if (use_batchmode) {
+					print("Thresholding in progress, image " + (i + 1) + " out of " + endAt); //have some kind of update while in batchmode
+				} 
 				thresholding2(subregion_dir, output, subregion_input[i]);
 				}
+		}
+		
+		if (use_batchmode) {
+			setBatchMode(false);
 		}
 		
 		// SAVE AREA MEASURES
@@ -401,6 +421,7 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 
   		//use file browser to choose path and files to run plugin on
 		setOption("JFileChooser",true);
+		File.setDefaultDir(output); //per default set it to the directory that was just output 
 		thresholded_dir=getDirectory("Choose parent folder containing thresholded images");
 		thresholded_input=getFileList(thresholded_dir);
 		count=thresholded_input.length;
@@ -417,18 +438,29 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 		Dialog.addMessage("which has this many images:");
 		Dialog.addMessage(count);
 		Dialog.addMessage("Select range of images you'd like to analyze");
-		Dialog.addNumber("Start at Image:", 1);
-		Dialog.addNumber("Stop at Image:", 1);
+		Dialog.addNumber("Start at Image:", startAt);
+		Dialog.addNumber("Stop at Image:", endAt);
 		Dialog.show();
 		
 		startAt=Dialog.getNumber();
 		endAt=Dialog.getNumber();
 		
-		setBatchMode("show");
+		if (use_batchmode) {
+			setBatchMode(true);
+		} else {
+			setBatchMode("show");
+		}
 		for (i=(startAt-1); i<(endAt); i++){
+			if (use_batchmode) {
+				print("Creating single cell ROI, image " + (i + 1) + " out of " + endAt); //have some kind of update while in batchmode
+			} 
 				cellROI(thresholded_dir, cellROI_output, thresholded_input[i], area_min, area_max);
 		}
-		//setBatchMode(false);
+		
+		
+		if (use_batchmode) {
+			setBatchMode(false);
+		}
 		
 	    print("Finished generating single cell ROIs");
 
@@ -442,6 +474,7 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
         
         //use file browser to choose path and files to run plugin on
 		setOption("JFileChooser",true);
+		File.setDefaultDir(cellROI_output);
 		cell_dir=getDirectory("Choose parent folder containing single-cell images");
 		cell_input=getFileList(cell_dir);
 		cell_count=cell_input.length;
@@ -462,16 +495,27 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 		Dialog.addMessage("which has this many images:");
 		Dialog.addMessage(cell_count);
 		Dialog.addMessage("Select range of cell images you'd like to analyze");
-		Dialog.addNumber("Start at Image:", 1);
-		Dialog.addNumber("Stop at Image:", 1);
+		Dialog.addNumber("Start at Image:", startAt);
+		Dialog.addNumber("Stop at Image:", endAt);
 		Dialog.show();
 		
 		startAt=Dialog.getNumber();
 		endAt=Dialog.getNumber();
        
-    	setBatchMode("show");
+    	if (use_batchmode) {
+			setBatchMode(true);
+		} else {
+			setBatchMode("show");
+		}
 		for (i=(startAt-1); i<(endAt); i++){
+			if (use_batchmode) {
+				print("Analyzing skeletons, image " + (i + 1) + " out of " + endAt); //have some kind of update while in batchmode
+			} 
 				skeleton(cell_dir, skeleton_output, skeleton2_output, cell_input[i]);
+		}
+		
+		if (use_batchmode) {
+			setBatchMode(false);
 		}
 		
 		print("Finished Analyzing Skeletons");
