@@ -89,20 +89,7 @@ is very important for compatibility with
 [MicrogliaMorphologyR](https://github.com/ciernialab/MicrogliaMorphologyR)
 functions.
 
-**Integration with FASTMAP ImageJ Plugin** (or any other method of
-tracing Regions of Interest prior to using MicrogliaMorphology): If you
-are interested in a specific region of interest (ROI) within your
-images, you can trace these in ImageJ prior to running
-MicrogliaMorphology to characterize the microglia within those ROIs.
-[FASTMAP](https://github.com/dterstege/FASTMAP) is one ImageJ tool that
-you can use to align your brain images to the [Allen Brain Institute
-reference mouse brain atlas](https://mouse.brain-map.org/static/atlas).
-You can also manually trace any ROIs on your images. Just make sure to
-save your .tif files so that they include the ROIs (example below), and
-click the check box next to any questions such as **“Do your input
-images have ROIs traced?”** that pop up in the MicrogliaMorphology
-prompts. This will ensure that only the part of the image that is
-contained within the ROI will be analyzed.
+**Integration with ROIMAPer ImageJ Plugin** (or any other method of tracing Regions of Interest prior to using MicrogliaMorphology): If you are interested in a specific region of interest (ROI) within your images, you can trace these in ImageJ prior to running MicrogliaMorphology to characterize the microglia within those ROIs. [ROIMAPer](https://github.com/ciernialab/ROIMAPer) is one ImageJ tool that you can use to align your brain images to the [Allen Brain Institute reference mouse brain atlas](https://mouse.brain-map.org/static/atlas). You can also manually trace any ROIs on your images. Just make sure to name the ROIs, save your .tif files so that they include the ROIs (example below), and click the check box next to any questions such as **“Do your input images have ROIs traced?”** that pop up in the MicrogliaMorphology prompts. This will ensure that only the part of the image that is contained within the ROI will be analyzed.
 
 ![](./images/ExampleROI.png)
 
