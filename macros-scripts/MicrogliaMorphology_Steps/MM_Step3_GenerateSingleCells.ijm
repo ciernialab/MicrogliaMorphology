@@ -43,8 +43,9 @@ function cellROI(input, output, filename, min, max){
 					close(label_temp+".tif");
 				}
 			}
-			return("");
-		} else {
+			return "" ;
+		} 
+else {
 			print("A problem occured in image " +  filename + ".");
 			return(filename);
 		}
@@ -101,4 +102,5 @@ function cellROI(input, output, filename, min, max){
 		skipped_files = Array.deleteValue(skipped_files, "");
 		setBatchMode(false);
 		
+
 	    print("Finished generating single cell ROIs. The following files were skipped: " + String.join(skipped_files, " "));

@@ -45,7 +45,9 @@ function thresholding(input, output, filename) {
 		// save thresholded + cleaned image -- this is the input for skeleton analysis below
 		saveAs("Tiff", output + filename + "_thresholded");
 		
-		close();
+		close(filename);
+
+		close(filename + "_thresholded.tif");
 	}
 	
 // Auto local thresholding 
@@ -135,13 +137,15 @@ function cellROI(input, output, filename, min, max){
 					close(label_temp+".tif");
 				}
 			}
-			return " ";
+			close(filename);
+			roiManager("reset");
+			return "";
 		} else {
+			close(filename);
+			roiManager("reset");
 			print("A problem occured in image " +  filename + ".");
 			return(filename);
 		}
-		close(filename);
-		roiManager("reset");
     }
 
 
@@ -209,7 +213,7 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 		roichoicetest=Dialog.getCheckbox();
 		use_batchmode = Dialog.getCheckbox();
 		use_test_image = Dialog.getCheckbox();
-		create_output_folders = Dialog.getCheckbox();
+		use_directory_creation = Dialog.getCheckbox();
 
 // STEP 1b. Determining single cell area range using test image
 		if (use_test_image == true) {
@@ -312,7 +316,7 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 			Dialog.create("Area Specification");
 			Dialog.addNumber("Custom min area:", 0, 2, 12, "px^2");
 			Dialog.addNumber("Custom max area:", 0, 2, 12, "px^2");
-			
+			Dialog.show();
 			area_min = Dialog.getNumber();
 			area_max = Dialog.getNumber();
 		}
@@ -323,7 +327,7 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 		autocount=subregion_input.length;
 		
 		if (!use_test_image == true) {
-			path = parent_directory;
+			path = subregion_dir;
 		}
 		
 	    // conditional printing for saving final parameters
@@ -390,7 +394,7 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 //use file browser to choose path and files to run plugin on
 		
 		//use file browser to choose path and files to save output to
-		if (create_output_folders) {
+		if (use_directory_creation) {
 			//create directory tree
 			output = parent_directory + "/ThresholdedImages/";
 			cellROI_output=parent_directory + "/SingleCells/";
@@ -402,18 +406,19 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 			File.makeDirectory(skeleton2_output);
 		} else {
 			output=getDirectory("Choose output folder to write thresholded images to");
-		}
-		if (use_batchmode && !create_output_folders) {//do all directory selection at the start
-			//use file browser to choose path and files to run plugin on
-			setOption("JFileChooser",true);
-			cellROI_output=getDirectory("Choose output folder to write single cell images to");
-			//use file browser to choose path and files to run plugin on
-			setOption("JFileChooser",true);
-			skeleton_output=getDirectory("Choose output folder to write skeleton results to");
 			
-			//use file browser to choose path and files to run plugin on
-			setOption("JFileChooser",true);
-			skeleton2_output=getDirectory("Choose output folder to write skeletonized images to");
+			if (use_batchmode) {
+				//use file browser to choose path and files to run plugin on
+				setOption("JFileChooser",true);
+				cellROI_output=getDirectory("Choose output folder to write single cell images to");
+				//use file browser to choose path and files to run plugin on
+				setOption("JFileChooser",true);
+				skeleton_output=getDirectory("Choose output folder to write skeleton results to");
+				
+				//use file browser to choose path and files to run plugin on
+				setOption("JFileChooser",true);
+				skeleton2_output=getDirectory("Choose output folder to write skeletonized images to");
+			}
 		}
 
 			
@@ -531,7 +536,7 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 				skipped_files = Array.concat(skipped_files, skipping);
 		}
 		
-		skipped_files = Array.deleteValue(skipped_files, " ");
+		skipped_files = Array.deleteValue(skipped_files, "");
 		
 		if (use_batchmode) {
 			setBatchMode(false);
