@@ -4,33 +4,10 @@
 
 // FUNCTIONS
 
-// Stash overlay/selection to ROI Manager before destructive ops (e.g. Z Project wipes overlay).
-// Returns number of stashed items so caller can pair with restoreOverlay().
-function stashOverlay() {
-	roiManager("reset");
-	if (selectionType() != -1) {
-		roiManager("add");
-		run("Select None");
-	}
-	if (Overlay.size > 0) {
-		run("To ROI Manager");
-	}
-	return roiManager("count");
-}
-
-function restoreOverlay(stashed_count) {
-	if (stashed_count > 0) {
-		run("From ROI Manager");
-		roiManager("reset");
-	}
-}
-
 // Auto thresholding 
 function thresholding(input, output, filename, microglia_channel) {
 		print(input + filename);
 		open(input + filename);
-
-		stashed_count = stashOverlay();
 
 		getDimensions(width, height, channels, slices, frames);
 		for (i = channels; i > 0; i--) {
@@ -48,8 +25,6 @@ function thresholding(input, output, filename, microglia_channel) {
 				rename(original_title);
 			}
 		}
-
-		restoreOverlay(stashed_count);
 	
 		// MEASURE AREA
 		run("Set Measurements...", "area display redirect=None decimal=9");
@@ -71,9 +46,6 @@ function thresholding(input, output, filename, microglia_channel) {
 		run("Despeckle");
 		run("Auto Threshold", "method=&auto_method ignore_black white");
 		if (roichoice){
-			if (Overlay.size > 0 && selectionType() == -1) {
-				Overlay.activateSelection(0);
-			}
 			// exclude anything not within roi
 			setBackgroundColor(0, 0, 0); 
 			run("Clear Outside"); 
@@ -100,8 +72,6 @@ function thresholding2(input, output, filename, microglia_channel) {
 		print(input + filename);
 		open(input + filename);
 
-		stashed_count = stashOverlay();
-
 		getDimensions(width, height, channels, slices, frames);
 		for (i = channels; i > 0; i--) {
 			Stack.setChannel(i);
@@ -118,8 +88,6 @@ function thresholding2(input, output, filename, microglia_channel) {
 				rename(original_title);
 			}
 		}
-
-		restoreOverlay(stashed_count);
 		
 		// MEASURE AREA
 		run("Set Measurements...", "area display redirect=None decimal=9");
@@ -141,9 +109,6 @@ function thresholding2(input, output, filename, microglia_channel) {
 		run("Despeckle");		
 		run("Auto Local Threshold", "method=&autolocal_method radius=&autolocal_radius parameter_1=0 parameter_2=0 white");
 		if (roichoice){
-			if (Overlay.size > 0 && selectionType() == -1) {
-				Overlay.activateSelection(0);
-			}
 			// exclude anything not within roi
 			setBackgroundColor(0, 0, 0); 
 			run("Clear Outside"); 
@@ -296,8 +261,6 @@ var do_z_project = false;
 			path = File.openDialog("Open your test image");
 			open(path);
 
-			stashed_count = stashOverlay();
-
 			getDimensions(width, height, channels, slices, frames);
 			for (i = channels; i > 0; i--) {
 				Stack.setChannel(i);
@@ -314,8 +277,6 @@ var do_z_project = false;
 					rename(original_title);
 				}
 			}
-
-			restoreOverlay(stashed_count);
 				
 			// Apply all steps before you would get to single cell extractions	
 				if(auto_or_autolocal == "Auto thresholding"){
@@ -335,9 +296,6 @@ var do_z_project = false;
 					run("Despeckle");
 					run("Auto Threshold", "method=&auto_method ignore_black white");
 					if (roichoicetest){
-						if (Overlay.size > 0 && selectionType() == -1) {
-							Overlay.activateSelection(0);
-						}
 						// exclude anything not within roi
 						setBackgroundColor(0, 0, 0); 
 						run("Clear Outside"); 
@@ -375,9 +333,6 @@ var do_z_project = false;
 					run("Despeckle");		
 					run("Auto Local Threshold", "method=&autolocal_method radius=&autolocal_radius parameter_1=0 parameter_2=0 white");
 					if (roichoicetest){
-						if (Overlay.size > 0 && selectionType() == -1) {
-							Overlay.activateSelection(0);
-						}
 						// exclude anything not within roi
 						setBackgroundColor(0, 0, 0); 
 						run("Clear Outside"); 
