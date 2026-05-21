@@ -44,7 +44,7 @@ for (i = 0; i < files.length; i++) {
 
 	print("[Progress]", "\\Update:" + (i + 1) + "/" + files.length + ": " + filename);
 
-	open(input_dir + filename);
+	run("Bio-Formats Importer", "open=[" + input_dir + filename + "] autoscale color_mode=Default view=Hyperstack stack_order=XYCZT");
 	if (nImages == 0) {
 		skipped = Array.concat(skipped, filename + " (failed to open)");
 		continue;
