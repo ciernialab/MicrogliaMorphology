@@ -5,26 +5,9 @@
 // FUNCTIONS
 
 // Auto thresholding 
-function thresholding(input, output, filename, microglia_channel) {
+function thresholding(input, output, filename) {
 		print(input + filename);
 		open(input + filename);
-
-		getDimensions(width, height, channels, slices, frames);
-		for (i = channels; i > 0; i--) {
-			Stack.setChannel(i);
-			if (i != microglia_channel) {
-				run("Delete Slice", "delete=channel");
-			}
-		}
-		if (do_z_project) {
-			getDimensions(width, height, channels, slices, frames);
-			if (slices > 1) {
-				original_title = getTitle();
-				run("Z Project...", "projection=[Max Intensity]");
-				close(original_title);
-				rename(original_title);
-			}
-		}
 	
 		// MEASURE AREA
 		run("Set Measurements...", "area display redirect=None decimal=9");
@@ -68,26 +51,9 @@ function thresholding(input, output, filename, microglia_channel) {
 	}
 	
 // Auto local thresholding 
-function thresholding2(input, output, filename, microglia_channel) {
+function thresholding2(input, output, filename) {
 		print(input + filename);
 		open(input + filename);
-
-		getDimensions(width, height, channels, slices, frames);
-		for (i = channels; i > 0; i--) {
-			Stack.setChannel(i);
-			if (i != microglia_channel) {
-				run("Delete Slice", "delete=channel");
-			}
-		}
-		if (do_z_project) {
-			getDimensions(width, height, channels, slices, frames);
-			if (slices > 1) {
-				original_title = getTitle();
-				run("Z Project...", "projection=[Max Intensity]");
-				close(original_title);
-				rename(original_title);
-			}
-		}
 		
 		// MEASURE AREA
 		run("Set Measurements...", "area display redirect=None decimal=9");
@@ -213,8 +179,6 @@ thresholding_parameters2 = newArray("Bernsen","Contrast","Mean","Median","MidGre
 
 
 
-var do_z_project = false;
-
 // MACRO STARTS HERE
 
 //Welcome message
@@ -239,8 +203,6 @@ var do_z_project = false;
 		Dialog.addCheckbox("Do you want to use batchmode", false);
 		Dialog.addCheckbox("Use test image to find Microglia areas?", true);
 		Dialog.addCheckbox("Create output folders?", true);
-		Dialog.addNumber("If your test image has multiple channels, which channel has the microglia signal?", 1, 0, 3, "");
-		Dialog.addCheckbox("Z-project input images (Max Intensity)?", false);
 		Dialog.addMessage("Next, let's determine the area range of a single microglial cell using a test image.");
 		Dialog.show();	
 		
@@ -252,31 +214,12 @@ var do_z_project = false;
 		use_batchmode = Dialog.getCheckbox();
 		use_test_image = Dialog.getCheckbox();
 		use_directory_creation = Dialog.getCheckbox();
-		test_image_channel = Dialog.getNumber();
-		do_z_project = Dialog.getCheckbox();
 
 // STEP 1b. Determining single cell area range using test image
 		if (use_test_image == true) {
 			//use file browser to choose test image
 			path = File.openDialog("Open your test image");
 			open(path);
-
-			getDimensions(width, height, channels, slices, frames);
-			for (i = channels; i > 0; i--) {
-				Stack.setChannel(i);
-				if (i != test_image_channel) {
-					run("Delete Slice", "delete=channel");
-				}
-			}
-			if (do_z_project) {
-				getDimensions(width, height, channels, slices, frames);
-				if (slices > 1) {
-					original_title = getTitle();
-					run("Z Project...", "projection=[Max Intensity]");
-					close(original_title);
-					rename(original_title);
-				}
-			}
 				
 			// Apply all steps before you would get to single cell extractions	
 				if(auto_or_autolocal == "Auto thresholding"){
@@ -491,13 +434,11 @@ var do_z_project = false;
 		Dialog.addNumber("Start at Image:", 1);
 		Dialog.addNumber("Stop at Image:", 1);
 		Dialog.addCheckbox("Do your input images have ROIs traced?", true);
-		Dialog.addNumber("If your images have multiple channels, which channel has the microglia signal?", 1, 0, 3, "");
 		Dialog.show();
 				
 		startAt=Dialog.getNumber();
 		endAt=Dialog.getNumber();
 		roichoice=Dialog.getCheckbox();
-		microglia_channel = Dialog.getNumber();
 		
 		if (use_batchmode) {
 			setBatchMode(true);
@@ -512,7 +453,7 @@ var do_z_project = false;
 				if (use_batchmode) {
 					print("Thresholding in progress, image " + (i + 1) + " out of " + endAt); //have some kind of update while in batchmode
 				} 
-				thresholding(subregion_dir, output, subregion_input[i], microglia_channel);
+				thresholding(subregion_dir, output, subregion_input[i]);
 				}
 		}
 		
@@ -523,7 +464,7 @@ var do_z_project = false;
 				if (use_batchmode) {
 					print("Thresholding in progress, image " + (i + 1) + " out of " + endAt); //have some kind of update while in batchmode
 				} 
-				thresholding2(subregion_dir, output, subregion_input[i], microglia_channel);
+				thresholding2(subregion_dir, output, subregion_input[i]);
 				}
 		}
 		
