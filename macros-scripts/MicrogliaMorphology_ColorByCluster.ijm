@@ -115,7 +115,8 @@ skipped_files = newArray();
 		Cluster8 = Dialog.getString();
 		Cluster9 = Dialog.getString();
 		Cluster10 = Dialog.getString();
-		clusters = newArray(Cluster1, Cluster2, Cluster3, Cluster4, Cluster5, Cluster6, Cluster7, Cluster8, Cluster9, Cluster10);
+		
+clusters = newArray(Cluster1, Cluster2, Cluster3, Cluster4, Cluster5, Cluster6, Cluster7, Cluster8, Cluster9, Cluster10);
 		
 		// loop through original images
 		for(i=0; i<ColorByCluster_originalimages_count; i++){
@@ -135,6 +136,7 @@ skipped_files = newArray();
 				openFile(ColorByCluster_clusters_dir + cluster_file);
 				selectWindow(threshold_file);
 				run("ROI Manager...");
+				roiManager("Reset");//reset manager here instead of closing the manager after processing each image
 				roiManager("Show All");
 				roiManager("Show None");
 				run("Analyze Particles...", "pixel add");
@@ -170,7 +172,6 @@ skipped_files = newArray();
 				close(ColorByCluster_originalimage + "_ColorByCluster.tif");
 				close(cluster_file);
 				close(ColorByCluster_originalimage);
-				close("ROI Manager");
 			} else {
 				skipped_files = Array.concat(skipped_files , ColorByCluster_originalimages[i]);
 			}
