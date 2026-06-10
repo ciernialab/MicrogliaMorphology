@@ -43,14 +43,17 @@ function cellROI(input, output, filename, min, max){
 					close(label_temp+".tif");
 				}
 			}
-			return "" ;
+			close(filename);
+			roiManager("reset");
+			return "";
 		} 
 else {
+			close(filename);
+			roiManager("reset");
 			print("A problem occured in image " +  filename + ".");
-			return(filename);
+			return filename;
 		}
-		close(filename);
-		roiManager("reset");
+		
     }
 
 
